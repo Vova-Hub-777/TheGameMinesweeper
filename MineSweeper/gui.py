@@ -48,6 +48,17 @@ class GUI():
                             self.screen.blit(success_image,
                                              success_image.get_rect(centerx=SCREEN_WIDTH // 2,
                                                                     centery=SCREEN_HEIGHT // 2))
+                    elif event.button == 3: # flag on mouse right click
+                        column_index = event.pos[0] // CELL_SIZE
+                        row_index = event.pos[1] // CELL_SIZE
+                        flag_font = pygame.font.SysFont('malgungothic', 30)
+                        flag_image = flag_font.render('V', True, WHITE)
+                        if CHECKED[row_index][column_index]: # Uncheck when selecting a cell that already has a flag checked
+                            flag_image.fill(GRAY)
+                            CHECKED[row_index][column_index] = False
+                        else:
+                            CHECKED[row_index][column_index] = True
+                        self.screen.blit(flag_image, (column_index * CELL_SIZE + 10, row_index * CELL_SIZE + 5))
             pygame.display.update()
     def getLevel(self, level): # Get the level (need to fix it later)
         if level=='Beginner':
