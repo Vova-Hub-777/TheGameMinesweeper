@@ -9,6 +9,11 @@ class Window(QWidget):
     def __init__(self):
         self.initialize()
 
+    def initialize(self):
+        self.setGeometry(700, 300, 500, 400)
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+
 
 app = QApplication(sys.argv)
 screen = Window()
