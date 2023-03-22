@@ -24,7 +24,30 @@ class GUI():
                 if event.type == QUIT: # Keep the program running until you press the X key at the top (required)
                     pygame.quit()
                     sys.exit()
-
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:  # on left mouse click
+                        column_index = event.pos[0] // CELL_SIZE
+                        row_index = event.pos[1] // CELL_SIZE
+                        num = 0
+                        print(column_index, row_index)
+                        if arr[row_index][column_index] == 'X':  # If the selected cell is X, exit
+                            self.open_All(arr, OPENED) # open all slots
+                            print("Defeat")
+                            fail_font = pygame.font.SysFont('malgungothic', 70)
+                            fail_image = fail_font.render('Defeat', True, RED)
+                            self.screen.blit(fail_image, fail_image.get_rect(centerx=SCREEN_WIDTH // 2,centery=SCREEN_HEIGHT // 2))
+                        else:  # Open the selected cell
+                            OPENED=self.open_Cell(arr,OPENED, column_index, row_index)
+                        for i in range(len(arr)): # count the number of unopened squares
+                            for j in range(len(arr[0])):
+                                if not OPENED[i][j]:
+                                    num += 1
+                        if num == gameLevel[2]: # If the number of unopened squares and the number of mines are the same, output success == All squares without mines are open
+                            success_font = pygame.font.SysFont('malgungothic', 70)
+                            success_image = success_font.render('Victory', True, RED)
+                            self.screen.blit(success_image,
+                                             success_image.get_rect(centerx=SCREEN_WIDTH // 2,
+                                                                    centery=SCREEN_HEIGHT // 2))
             pygame.display.update()
     def getLevel(self, level): # Get the level (need to fix it later)
         if level=='Beginner':
