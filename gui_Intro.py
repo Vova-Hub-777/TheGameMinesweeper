@@ -4,6 +4,8 @@ from PyQt5.QtCore import Qt
 from PyQt5 import QtGui
 import sys
 
+from MineSweeper.settings import *
+
 
 class Window(QWidget):
     def __init__(self):
@@ -21,6 +23,15 @@ class Window(QWidget):
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setFont(QtGui.QFont('Hack', 15))
         layout.addWidget(self.label)
+
+        btnRun0 = QPushButton("Beginner", self)
+        btnRun0.move(BTN_X, BTN_Y)
+
+        btnRun1 = QPushButton("Intermediate", self)
+        btnRun1.move(BTN_X, BTN_Y + 30)
+
+        btnRun2 = QPushButton("Expert", self)
+        btnRun2.move(BTN_X, BTN_Y + 60)
 
 
 app = QApplication(sys.argv)
