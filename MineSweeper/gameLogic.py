@@ -21,4 +21,31 @@ class GameLogic():
             print("[HINT] Generated mine location: (x:", x, ", y:", y,
                   ")")
             arr[y][x] = 'X'  # Display 'X' in the coordinate where the mine is created.
+
+            # Generate number hints around the mines
+            if (x >= 0 and x <= width - 2) and (y >= 0 and y <= height - 1):
+                if arr[y][x + 1] != 'X':
+                    arr[y][x + 1] += 1  # center right
+            if (x >= 1 and x <= width - 1) and (y >= 0 and y <= height - 1):
+                if arr[y][x - 1] != 'X':
+                    arr[y][x - 1] += 1  # center left
+            if (x >= 1 and x <= width - 1) and (y >= 1 and y <= height - 1):
+                if arr[y - 1][x - 1] != 'X':
+                    arr[y - 1][x - 1] += 1  # top left
+            if (x >= 0 and x <= width - 2) and (y >= 1 and y <= height - 1):
+                if arr[y - 1][x + 1] != 'X':
+                    arr[y - 1][x + 1] += 1  # top right
+            if (x >= 0 and x <= width - 1) and (y >= 1 and y <= height - 1):
+                if arr[y - 1][x] != 'X':
+                    arr[y - 1][x] += 1  # top center
+            if (x >= 0 and x <= width - 2) and (y >= 0 and y <= height - 2):
+                if arr[y + 1][x + 1] != 'X':
+                    arr[y + 1][x + 1] += 1  # bottom right
+            if (x >= 1 and x <= width - 1) and (y >= 0 and y <= height - 2):
+                if arr[y + 1][x - 1] != 'X':
+                    arr[y + 1][x - 1] += 1  # bottom left
+            if (x >= 0 and x <= width - 1) and (y >= 0 and y <= height - 2):
+                if arr[y - 1][x] != 'X':
+                    arr[y - 1][x] += 1  # bottom center
+            num += 1
         return arr
