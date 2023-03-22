@@ -24,6 +24,8 @@ class GUI():
                 if event.type == QUIT: # Keep the program running until you press the X key at the top (required)
                     pygame.quit()
                     sys.exit()
+
+            pygame.display.update()
     def getLevel(self, level): # Get the level (need to fix it later)
         if level=='Beginner':
             return BEGINNER
@@ -51,3 +53,29 @@ class GUI():
                 pygame.draw.rect(self.screen, GRAY, rect)
                 pygame.draw.rect(self.screen, BLACK, rect, 1)
 
+    def open_Cell(self,arr,OPENED,col,row):
+
+        if col < 0 or col >= len(arr[0]) or row < 0 or row >= len(arr):
+            return arr
+        cell = arr[row][col]  # selected cell
+        if OPENED[row][col]: # Already checked cells
+            return arr
+        OPENED[row][col] = True
+        if cell == 0: # If the cell is 0, create a recursive function that opens repeatedly until a number greater than 1 is generated / Looks like it should be fixed with a for statement
+            self.open_Cell(arr, OPENED, col + 1, row)
+            self.open_Cell(arr, OPENED,col, row + 1)
+            self.open_Cell(arr, OPENED,col + 1, row + 1)
+            self.open_Cell(arr, OPENED,col - 1, row)
+            self.open_Cell(arr, OPENED,col, row - 1)
+            self.open_Cell(arr, OPENED,col - 1, row - 1)
+            self.open_Cell(arr, OPENED,col + 1, row - 1)
+            self.open_Cell(arr, OPENED,col - 1, row + 1)
+        font5 = pygame.font.SysFont('notosanscjkkrblack', 50)
+        img5 = font5.render(str(cell), True, BLACK)
+        self.screen.blit(img5, (CELL_SIZE*col+10, CELL_SIZE*row+10))
+        return OPENED
+
+    def open_All(self,arr,OPENED):
+        for i in range(len(arr)):
+            for j in range(len(arr[0])):
+                self.open_Cell(arr,OPENED,j,i)
