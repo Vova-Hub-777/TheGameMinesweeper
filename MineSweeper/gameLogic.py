@@ -45,7 +45,7 @@ class GameLogic():
                 if arr[y + 1][x - 1] != 'X':
                     arr[y + 1][x - 1] += 1  # bottom left
             if (x >= 0 and x <= width - 1) and (y >= 0 and y <= height - 2):
-                if arr[y - 1][x] != 'X':
-                    arr[y - 1][x] += 1  # bottom center
+                if arr[y + 1][x] != 'X':
+                    arr[y + 1][x] += 1  # bottom center
             num += 1
         return arr
