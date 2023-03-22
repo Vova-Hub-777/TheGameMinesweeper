@@ -8,7 +8,6 @@ BEGINNER = (5,5,5)
 INTERMEDIATE = (10,10,10)
 ADVANCED = (20,10,20)
 
-
 # intro button location
 BTN_X = 200
 BTN_Y = 250
