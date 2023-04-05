@@ -25,7 +25,7 @@ jobs:
 
       - name: Run flake8
         run: |
-          flake8 --exclude ./venv/ --max-line-length=150 --ignore=F405,E401,F403,E125,E501,E115,E501,E302
+          flake8 --exclude ./venv/ --max-line-length=150 --ignore=F405,F403
 
       - name: Generate pytest report
         run: |
@@ -33,7 +33,7 @@ jobs:
 
       - name: Generate flake8 report
         run: |
-          flake8 --format=html --htmldir=flake8_report --exclude ./venv/ --max-line-length=150 --ignore=F405,E401,F403,E125,E501,E115,E501,E302
+          flake8 --format=html --htmldir=flake8_report --exclude ./venv/ --max-line-length=150 --ignore=F405,F403
 
       - name: Upload test report
         uses: actions/upload-artifact@v2

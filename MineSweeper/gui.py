@@ -1,7 +1,8 @@
-import sys, pygame
-from MineSweeper.settings import *
+import pygame
+import sys
 from pygame.locals import *
 from MineSweeper.gameLogic import GameLogic
+from MineSweeper.settings import *
 
 
 class GUI():
@@ -21,7 +22,8 @@ class GUI():
         self.draw_Cells(arr)  # Draw cells
 
         while True:  # main game loop (call the methods needed for the game)
-            for event in pygame.event.get():  # Area that receives events in the window. For example, quit key, keyboard key, mouse click, etc.
+            for event in pygame.event.get():  # Area that receives events in the window. For example, quit key,
+                # keyboard key, mouse click, etc.
                 if event.type == QUIT:  # Keep the program running until you press the X key at the top (required)
                     pygame.quit()
                     sys.exit()
@@ -44,9 +46,9 @@ class GUI():
                             for j in range(len(arr[0])):
                                 if not OPENED[i][j]:
                                     num += 1
-                        if num == gameLevel[
-                            2]:
-                            # If the number of unopened squares and the number of mines are the same, output success == All squares without mines are open
+                        if num == gameLevel[2]:
+                            # If the number of unopened squares and the number of mines are the same, output success
+                            # == All squares without mines are open
                             success_font = pygame.font.SysFont('malgungothic', 70)
                             success_image = success_font.render('Victory', True, RED)
                             self.screen.blit(success_image,
@@ -57,8 +59,7 @@ class GUI():
                         row_index = event.pos[1] // CELL_SIZE
                         flag_font = pygame.font.SysFont('malgungothic', 30)
                         flag_image = flag_font.render('V', True, WHITE)
-                        if CHECKED[row_index][
-                            column_index]:  # Uncheck when selecting a cell that already has a flag checked
+                        if CHECKED[row_index][column_index]:  # Uncheck when selecting a cell that already has a flag checked
                             flag_image.fill(GRAY)
                             CHECKED[row_index][column_index] = False
                         else:
@@ -101,7 +102,8 @@ class GUI():
             return arr
         OPENED[row][col] = True
         if cell == 0:
-        # If the cell is 0, create a recursive function that opens repeatedly until a number greater than 1 is generated / Looks like it should be fixed with a for statement
+            # If the cell is 0, create a recursive function that opens repeatedly until a number greater than 1 is generated /
+            # Looks like it should be fixed with a for statement
             self.open_Cell(arr, OPENED, col + 1, row)
             self.open_Cell(arr, OPENED, col, row + 1)
             self.open_Cell(arr, OPENED, col + 1, row + 1)

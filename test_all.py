@@ -10,6 +10,8 @@ def getLevel(level):  # Get the level (need to fix it later)
         return INTERMEDIATE
     elif level == 'Expert':
         return ADVANCED
+
+
 def getScreenSize(level):
     if level == 'Beginner':
         return SCREEN_SIZE_BEGINNER
