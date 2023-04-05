@@ -1,11 +1,12 @@
 import random
 
+
 class GameLogic():
     def __init__(self):
         pass
 
-    def createMap(self,
-                  level):  # Generate the map according to the level + planting mines according to the level + creating appropriate numbers near the mines
+    def createMap(self, level):
+        # Generate the map according to the level + planting mines according to the level + creating appropriate numbers near the mines
         width = level[0]
         height = level[1]
         mine = level[2]
